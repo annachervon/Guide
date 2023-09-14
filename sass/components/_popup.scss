@@ -1,6 +1,6 @@
 .popup {
 
-    background-color: rgba($color-black, .8);
+    background-color: rgba($color-black, .3);
     height: 100vh;
     width: 100%;
     position: fixed;
@@ -11,6 +11,15 @@
     opacity: 0;
     visibility: hidden;
     transition: all .3s;
+    backdrop-filter: grayscale(1);
+
+    //if the above is not supported by the browser then here is the updated rule:
+    // @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    //     -webkit-backdrop-filter: blur(10px);
+    //     backdrop-filter: blur(10px);
+    //     background-color: rgba($color-black, .3);
+    //     //and in the popup itself the background will be .8 as in Chrome this feature didn't work before
+    // }
 
    
     &__content {
@@ -30,7 +39,12 @@
     &__left {
         width: 33.333333%;
         display: table-cell;
-        
+
+        @include respond(tab-land) {
+            display: grid;
+            width: 100%;
+            padding: 7rem;
+        }      
 
     }
 
@@ -39,15 +53,37 @@
         display: table-cell;
         vertical-align: middle;
         padding: 3rem 5rem;
+
+        @include respond(tab-land) {
+            display: grid;
+            width: 100%;
+            padding: 3rem 7rem;
+        }   
         
+        .heading-secondary {
+            text-align: center;
+        }
+
+        .heading-tertiary {
+            text-align: center;
+        }
     } 
 
     &__img {
         display: block;
         width: 100%;
     }
+    
 
-    &__text {
+    &__btn {
+        
+        @include respond(tab-land){
+            width: 15rem;
+            margin: auto;
+            padding: 1rem 4rem;
+        }
+    }
+       &__text {
         font-size: 1.4rem;
         margin-bottom: 4rem;
         -moz-column-count: 2;
@@ -60,7 +96,17 @@
         -ms-hyphesn: auto;
         -webkit-hypens: auto;
         hyphens: auto;
+
+          
+
+        @include respond(tab-port){
+            column-count: 1;
+            column-gap: none;
+            column-rule: none;
+        }
     }
+
+    
 //open states (popup open)
     &:target {
         opacity: 1;
@@ -90,5 +136,5 @@
             color: $color-primary;
         }
     }
-
+    
 }

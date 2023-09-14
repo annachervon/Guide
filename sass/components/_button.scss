@@ -1,13 +1,12 @@
 
 .btn {
 
-
     &,
     &:link,
     &:visited {
         text-transform: uppercase;
         text-decoration: none;
-        padding: 15px 40px;
+        padding: 1.5rem 4rem;
         display: inline-block; 
         border-radius: 100px;
         transition: all 0.3s;
@@ -16,6 +15,7 @@
         //change for the <button> element::after
         border: none;
         cursor: pointer;
+
 
     }
 
